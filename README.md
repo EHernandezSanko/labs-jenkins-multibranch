@@ -11,6 +11,22 @@ python -m pip install -r requirements.txt
 python -m uvicorn main:app --reload
 ```
 
+## Run with Docker
+
+Build the image and start the API:
+
+```powershell
+docker build -t simple-fastapi .
+docker run --rm -p 8000:8000 simple-fastapi
+```
+
+The API is available at `http://localhost:8000`. To report a branch in the
+health response from inside the container, pass it with `APP_BRANCH`:
+
+```powershell
+docker run --rm -p 8000:8000 -e APP_BRANCH=dev simple-fastapi
+```
+
 ## Endpoints
 
 - `GET /v1/health` returns the API status, version, and branch as JSON. The
